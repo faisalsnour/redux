@@ -106,6 +106,8 @@ console.log('Initial state', store.getState())
 // to get the updated state
 
 const unsubscribe = store.subscribe(() => { })
+// const unsubscribe = store.subscribe(() => {store.getState() })
+
 
 // to make change
 
