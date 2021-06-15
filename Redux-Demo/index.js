@@ -49,4 +49,12 @@ console.log('Initial state', store.getState())
 
 // to get the updated state
 
-store.subscribe(() => console.log('Updated state', store.getState()))
+const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
+
+// to make change
+
+store.dispatch(buyCake())
+store.dispatch(buyCake())
+store.dispatch(buyCake())
+
+unsubscribe()
