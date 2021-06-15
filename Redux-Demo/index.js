@@ -1,8 +1,11 @@
 // import redux from 'redux'
-
 const redux = require('redux')
 const createStore = redux.createStore
 const combineReducers = redux.combineReducers;
+// reduxLogger used to extend functionality to Redux
+const reduxLogger = require('redux-logger')
+const applyMiddleware = redux.applyMiddleware
+const logger = reduxLogger.createLogger()
 
 const buy_cake = "buy_cake";
 const buy_icecream = "buy_icecream"
@@ -96,13 +99,13 @@ const rootReducer = combineReducers({
 })
 
 // redux store to hold application state
-const store = createStore(rootReducer)
+const store = createStore(rootReducer, applyMiddleware(logger))
 
 console.log('Initial state', store.getState())
 
 // to get the updated state
 
-const unsubscribe = store.subscribe(() => console.log('Updated state', store.getState()))
+const unsubscribe = store.subscribe(() => { })
 
 // to make change
 
