@@ -8,3 +8,14 @@ function buyCake() {
         info: "first redux action"
     }
 }
+
+// this is state
+const initialState = {
+    numOfCakes: 10
+}
+
+// (previousState, action) => newState
+
+const reducer = (state = initialState, action) => {
+
+}
