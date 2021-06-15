@@ -4,6 +4,7 @@ const redux = require('redux')
 const createStore = redux.createStore
 
 const buy_cake = "buy_cake";
+const add_cake = "add_cake"
 
 
 // first step is to create an action, which is an object that has type property
@@ -11,6 +12,13 @@ function buyCake() {
     return {
         type: buy_cake,
         info: "first redux action"
+    }
+}
+
+function addCake() {
+    return {
+        type: add_cake,
+        info: "Add cake to the shelve"
     }
 }
 
@@ -38,6 +46,10 @@ const reducer = (state = initialState, action) => {
             ...state,
             numOfCakes: state.numOfCakes - 1
         }
+        case add_cake: return {
+            ...state,
+            numOfCakes: state.numOfCakes + 1
+        }
         default: return state
     }
 }
@@ -56,5 +68,7 @@ const unsubscribe = store.subscribe(() => console.log('Updated state', store.get
 store.dispatch(buyCake())
 store.dispatch(buyCake())
 store.dispatch(buyCake())
+store.dispatch(addCake())
 
+// final step is to ubsubscribe to the changes
 unsubscribe()
