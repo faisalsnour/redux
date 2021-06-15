@@ -9,6 +9,17 @@ function buyCake() {
     }
 }
 
+/*
+- Only one store for the whole application
+- Responsibility:
+ - Holds application state
+ - Allows access to state via getState()
+ - Allows state to be updated via dispatch(action)
+ - Registers listeners via subscribe(listener)
+ - Handles unregistering of listeners via the function returned by subscribe(listener)
+*/
+
+
 // this is state
 const initialState = {
     numOfCakes: 10
