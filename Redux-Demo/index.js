@@ -17,5 +17,13 @@ const initialState = {
 // (previousState, action) => newState
 
 const reducer = (state = initialState, action) => {
+    switch (action.type) {
+        case buy_cake: return {
+            ...state,
+            numOfCakes: state.numOfCakes - 1
+        }
+        default: return state
+    }
+
 
 }
