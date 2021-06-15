@@ -1,3 +1,8 @@
+// import redux from 'redux'
+
+const redux = require('redux')
+const createStore = redux.createStore
+
 const buy_cake = "buy_cake";
 
 
@@ -12,11 +17,11 @@ function buyCake() {
 /*
 - Only one store for the whole application
 - Responsibility:
- - Holds application state
- - Allows access to state via getState()
- - Allows state to be updated via dispatch(action)
- - Registers listeners via subscribe(listener)
- - Handles unregistering of listeners via the function returned by subscribe(listener)
+ 1 - Holds application state
+ 2 - Allows access to state via getState()
+ 3 - Allows state to be updated via dispatch(action)
+ 4 - Registers listeners via subscribe(listener)
+ 5 - Handles unregistering of listeners via the function returned by subscribe(listener)
 */
 
 
@@ -35,6 +40,13 @@ const reducer = (state = initialState, action) => {
         }
         default: return state
     }
-
-
 }
+
+// redux store to hold application state
+const store = createStore(reducer)
+
+console.log('Initial state', store.getState())
+
+// to get the updated state
+
+store.subscribe(() => console.log('Updated state', store.getState()))
