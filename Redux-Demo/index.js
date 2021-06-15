@@ -2,6 +2,7 @@
 
 const redux = require('redux')
 const createStore = redux.createStore
+const combineReducers = redux.combineReducers;
 
 const buy_cake = "buy_cake";
 const buy_icecream = "buy_icecream"
@@ -34,30 +35,68 @@ function buyIceCream() {
 
 
 // this is state
-const initialState = {
-    numOfCakes: 10,
+// const initialState = {
+//     numOfCakes: 10,
+//     numOfIceCreams: 20
+// }
+
+// create a state for cake only
+const initialCakeState = {
+    numOfCakes: 10
+}
+
+// create a state for ice cream only
+const initialIceCreamState = {
     numOfIceCreams: 20
 }
 
+
 // (previousState, action) => newState
 
-const reducer = (state = initialState, action) => {
+// const reducer = (state = initialState, action) => {
+//     switch (action.type) {
+//         case buy_cake: return {
+//             ...state,
+//             numOfCakes: state.numOfCakes - 1
+//         }
+//         case buy_icecream: return {
+//             ...state,
+//             numOfIceCreams: state.numOfIceCreams - 1
+//         }
+
+//         default: return state
+//     }
+// }
+
+
+const cakeReducer = (state = initialCakeState, action) => {
     switch (action.type) {
         case buy_cake: return {
             ...state,
             numOfCakes: state.numOfCakes - 1
         }
-        case buy_icecream: return {
-            ...state,
-            numOfIceCreams: state.numOfIceCreams - 1
-        }
-
         default: return state
     }
 }
 
+const iceCreamReducer = (state = initialIceCreamState, action) => {
+    switch (action.type) {
+        case buy_icecream: return {
+            ...state,
+            numOfIceCreams: state.numOfIceCreams - 1
+        }
+        default: return state
+    }
+}
+
+// create combinedReducer for icecream and cake called rootReducer
+const rootReducer = combineReducers({
+    cake: cakeReducer,
+    iceCream: iceCreamReducer
+})
+
 // redux store to hold application state
-const store = createStore(reducer)
+const store = createStore(rootReducer)
 
 console.log('Initial state', store.getState())
 
