@@ -1,5 +1,8 @@
 const redux = require('redux')
 const createStore = redux.createStore
+const applyMiddleware = redux.applyMiddleware
+const thunkMiddleware = require(`redux-thunk`).default
+const axios = require(`axios`)
 
 // 1- create initial state
 const initalState = {
@@ -60,4 +63,23 @@ const reducer = (state = initalState, action) => {
     }
 }
 
-const store = createStore(reducer)
+// action creator
+const fetchUsers = () => {
+    return function (dispatch) {
+        dispatch(fetchUsersRequest())
+        axios.get(`https://jsonplaceholder.typicode.com/users`)
+            .then(response => {
+                // response.data
+                const users = response.data.map(user => user.id)
+                dispatch(fetchUsersSuccess(users))
+            })
+            .catch(error => {
+                // error.message
+                dispatch(fetchUsersFailure(error.message))
+            })
+    }
+}
+// appleMiddleware(thunkMiddleware) allows to retunr a function instead of action
+const store = createStore(reducer, applyMiddleware(thunkMiddleware))
+store.subscribe(() => { console.log(store.getState()) })
+store.dispatch(fetchUsers())
