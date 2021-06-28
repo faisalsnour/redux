@@ -12,20 +12,20 @@ const fetch_users_request = 'fetch_users_request'
 const fetch_users_success = 'fetch_users_success'
 const fetch_users_failure = 'fetch_users_failure'
 
-// 2- action creator
+// 2-1 action creator
 const fetchUsersRequest = () => {
     return {
         type: fetch_users_request
     }
 }
-
+// 2-3 action creator
 const fetchUsersSuccess = users => {
     return {
         type: fetch_users_success,
         payload: users
     }
 }
-
+// 2-3 action creator
 const fetchUsersFailure = error => {
     return {
         type: fetch_users_failure,
