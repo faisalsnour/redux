@@ -16,7 +16,7 @@ function IceCreamContainer(props) {
 // function that takes state as parameter and return object - to get redux state 
 const mapStateToProps = state => {
     return {
-        numOfIceCream: state.numOfIceCream
+        numOfIceCream: state.iceCream.numOfIceCream
     }
 }
 
