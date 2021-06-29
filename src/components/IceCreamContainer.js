@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 function IceCreamContainer(props) {
     return (
         <div>
-            <h2>Number of ice creams - {props.numOfIceCream}</h2>
+            <h2>Number of ice creams - {props.numOfIceCreams}</h2>
             <button onClick={props.buyIceCream}>Buy Ice Cream</button>
         </div>
     )
@@ -16,7 +16,7 @@ function IceCreamContainer(props) {
 // function that takes state as parameter and return object - to get redux state 
 const mapStateToProps = state => {
     return {
-        numOfIceCream: state.iceCream.numOfIceCream
+        numOfIceCreams: state.iceCream.numOfIceCreams
     }
 }
 
